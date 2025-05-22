@@ -1,0 +1,68 @@
+name: .NET MAUI Cross-Platform CI
+
+on:
+  push:
+    branches: [ "master", "dev" ]
+  pull_request:
+    branches: [ "master", "dev" ]
+
+jobs:
+  build-windows:
+    name: Build on Windows (WinUI & Android)
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build (Windows)
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      continue-on-error: true
+
+    # Only runs when pushing to master
+    - name: Publish Windows Artifacts
+      if: github.ref == 'refs/heads/master'
+      run: echo "Publishing Windows build artifacts for master branch only!"
+
+  build-macos:
+    name: Build on macOS (iOS & macOS)
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build (macOS)
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Build iOS (simulator)
+      run: dotnet build --configuration Release -f:net9.0-ios --no-restore
+      continue-on-error: true
+
+    - name: Build macOS (Catalyst)
+      run: dotnet build --configuration Release -f:net9.0-maccatalyst --no-restore
+      continue-on-error: true
+
+    # Only runs when pushing to master
+    - name: Publish macOS Artifacts
+      if: github.ref == 'refs/heads/master'
+      run: echo "Publishing macOS build artifacts for master branch only!"
