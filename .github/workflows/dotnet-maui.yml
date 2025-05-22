@@ -1,3 +1,11 @@
+name: .NET MAUI Cross-Platform CI
+
+on:
+  push:
+    branches: [ "master", "dev" ]
+  pull_request:
+    branches: [ "master", "dev" ]
+
 jobs:
   build-windows:
     runs-on: windows-latest
