@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NomenDeutsch.Pages.MainPage"
+             BackgroundColor="#F6F7F9">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#F7FBFF" Offset="0.0" />
+            <GradientStop Color="#E8EAF6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="28" Padding="24,60,24,24">
+
+            <!-- App Logo or Modern App Name -->
+            <Label Text="🦉"
+                   FontSize="74"
+                   HorizontalOptions="Center"
+                   Padding="0,0,0,8"/>
+
+            <!-- Modern App Title (Optional) -->
+            <Label Text="Deutsche Nomen"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#2E425C"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,14"/>
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="22"
+                  RowSpacing="22"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center">
+                <!-- Card 1: Learn Nouns -->
+                <Frame Grid.Row="0" Grid.Column="0"
+                       CornerRadius="28" HasShadow="True"
+                       BackgroundColor="#A7C7E7"
+                       HeightRequest="140" WidthRequest="140"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLearnTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="📖" FontSize="68" HorizontalOptions="Center"/>
+                        <Label Text="Lernen"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E425C"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 2: Der/Die/Das? (Artikel) -->
+                <Frame Grid.Row="0" Grid.Column="1"
+                       CornerRadius="28" HasShadow="True"
+                       BackgroundColor="#FFE082"
+                       HeightRequest="140" WidthRequest="140"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnArtikelTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="🚦" FontSize="68" HorizontalOptions="Center"/>
+                        <Label Text="Der/Die/Das?"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E425C"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 3: What’s This? (Meaning) -->
+                <Frame Grid.Row="1" Grid.Column="0"
+                       CornerRadius="28" HasShadow="True"
+                       BackgroundColor="#B9F6CA"
+                       HeightRequest="140" WidthRequest="140"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMeaningTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="💡" FontSize="68" HorizontalOptions="Center"/>
+                        <Label Text="What’s This?"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E425C"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 4: Plural? -->
+                <Frame Grid.Row="1" Grid.Column="1"
+                       CornerRadius="28" HasShadow="True"
+                       BackgroundColor="#FF8A80"
+                       HeightRequest="140" WidthRequest="140"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPluralTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="➕" FontSize="68" HorizontalOptions="Center"/>
+                        <Label Text="Plural?"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E425C"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

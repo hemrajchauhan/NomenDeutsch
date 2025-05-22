@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="NomenDeutsch.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:NomenDeutsch.Pages">
+
+    <FlyoutItem Title="Home" Icon="🏠" Route="MainPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Learn" Icon="📖" Route="LearnPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:LearnPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Der/Die/Das?" Icon="🚦" Route="QuizArtikelPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:QuizArtikelPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="What’s This?" Icon="💡" Route="QuizEnglishPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:QuizEnglishPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Plural?" Icon="➕" Route="QuizPluralPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:QuizPluralPage}" />
+    </FlyoutItem>
+</Shell>

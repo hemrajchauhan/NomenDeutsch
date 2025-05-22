@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NomenDeutsch.Pages.LearnPage">
+
+    <VerticalStackLayout Padding="20,60,20,20" Spacing="18">
+        <Frame Padding="18" CornerRadius="24" BackgroundColor="#FFFFFF" HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+                <Label x:Name="FullNounLabel" FontSize="22" FontAttributes="Bold"/>
+                <Label x:Name="PluralLabel" FontSize="16"/>
+                <Label x:Name="EnglishLabel" FontSize="16"/>
+                <Label x:Name="BeispielLabel" FontSize="15" TextColor="#47525E" FontAttributes="Italic"/>
+                <Label x:Name="HintLabel" FontSize="13" TextColor="#999999" FontAttributes="Italic"/>
+            </VerticalStackLayout>
+        </Frame>
+        <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+            <Button Text="←" Clicked="OnPreviousClicked"/>
+            <Button Text="→" Clicked="OnNextClicked"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
