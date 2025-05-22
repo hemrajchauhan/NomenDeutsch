@@ -21,11 +21,14 @@ jobs:
       - name: Install .NET MAUI workloads
         run: dotnet workload install maui-android maui-windows
 
-      - name: Restore
-        run: dotnet restore NomenDeutsch.csproj
+      - name: Restore WinUI
+        run: dotnet restore NomenDeutsch.csproj -f net9.0-windows10.0.19041.0
 
       - name: Build WinUI
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-windows10.0.19041.0 --no-restore
+
+      - name: Restore Android
+        run: dotnet restore NomenDeutsch.csproj -f net9.0-android
 
       - name: Build Android
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-android --no-restore
@@ -49,15 +52,21 @@ jobs:
       - name: Install .NET MAUI workloads
         run: dotnet workload install maui-android maui-ios maui-maccatalyst
 
-      - name: Restore
-        run: dotnet restore NomenDeutsch.csproj
+      - name: Restore Android
+        run: dotnet restore NomenDeutsch.csproj -f net9.0-android
 
       - name: Build Android
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-android --no-restore
 
+      - name: Restore iOS
+        run: dotnet restore NomenDeutsch.csproj -f net9.0-ios
+
       - name: Build iOS (simulator)
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-ios --no-restore
         continue-on-error: true
+
+      - name: Restore MacCatalyst
+        run: dotnet restore NomenDeutsch.csproj -f net9.0-maccatalyst
 
       - name: Build MacCatalyst
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-maccatalyst --no-restore
