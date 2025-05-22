@@ -21,14 +21,18 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Install .NET MAUI workloads
-      run: dotnet workload install maui-android maui-ios maui-maccatalyst maui-windows
+      run: dotnet workload install maui-android maui-windows
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build (Windows)
-      run: dotnet build --configuration Release --no-restore
+    - name: Build WinUI
+      run: dotnet build --configuration Release -f net9.0-windows10.0.19041.0 --no-restore
 
+    - name: Build Android
+      run: dotnet build --configuration Release -f net9.0-android --no-restore
+
+    # Optional: Run tests (if you have Windows-compatible tests)
     - name: Test
       run: dotnet test --no-build --verbosity normal
       continue-on-error: true
@@ -39,7 +43,7 @@ jobs:
       run: echo "Publishing Windows build artifacts for master branch only!"
 
   build-macos:
-    name: Build on macOS (iOS & macOS)
+    name: Build on macOS (Android, iOS & Mac Catalyst)
     runs-on: macos-latest
 
     steps:
@@ -57,15 +61,15 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build (macOS)
-      run: dotnet build --configuration Release --no-restore
+    - name: Build Android
+      run: dotnet build --configuration Release -f net9.0-android --no-restore
 
     - name: Build iOS (simulator)
-      run: dotnet build --configuration Release -f:net9.0-ios --no-restore
+      run: dotnet build --configuration Release -f net9.0-ios --no-restore
       continue-on-error: true
 
-    - name: Build macOS (Catalyst)
-      run: dotnet build --configuration Release -f:net9.0-maccatalyst --no-restore
+    - name: Build MacCatalyst
+      run: dotnet build --configuration Release -f net9.0-maccatalyst --no-restore
       continue-on-error: true
 
     # Only runs when pushing to master
