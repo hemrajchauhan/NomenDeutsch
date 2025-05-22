@@ -1,4 +1,4 @@
-name: .NET MAUI Cross-Platform CI
+name: .NET MAUI Windows CI
 
 on:
   push:
@@ -7,8 +7,9 @@ on:
     branches: [ "master", "dev" ]
 
 jobs:
-  build-windows:
+  build:
     runs-on: windows-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,58 +22,21 @@ jobs:
       - name: Install .NET MAUI workloads
         run: dotnet workload install maui-android maui-windows
 
-      - name: Restore WinUI
-        run: dotnet restore NomenDeutsch.csproj -f net9.0-windows10.0.19041.0
+      - name: Restore dependencies
+        run: dotnet restore NomenDeutsch.csproj
 
       - name: Build WinUI
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-windows10.0.19041.0 --no-restore
 
-      - name: Restore Android
-        run: dotnet restore NomenDeutsch.csproj -f net9.0-android
-
       - name: Build Android
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-android --no-restore
 
-      # Only runs when pushing to master
+      # Optional: Run tests if you have them
+      #- name: Test
+      #  run: dotnet test --no-build --verbosity normal
+      #  continue-on-error: true
+
+      # Optional: Publish artifact step for master
       - name: Publish Windows Artifacts
         if: github.ref == 'refs/heads/master'
-        run: echo "Publishing Windows build artifacts for master branch only!"
-
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '9.0.x'
-
-      - name: Install .NET MAUI workloads
-        run: dotnet workload install maui-android maui-ios maui-maccatalyst
-
-      - name: Restore Android
-        run: dotnet restore NomenDeutsch.csproj -f net9.0-android
-
-      - name: Build Android
-        run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-android --no-restore
-
-      - name: Restore iOS
-        run: dotnet restore NomenDeutsch.csproj -f net9.0-ios
-
-      - name: Build iOS (simulator)
-        run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-ios --no-restore
-        continue-on-error: true
-
-      - name: Restore MacCatalyst
-        run: dotnet restore NomenDeutsch.csproj -f net9.0-maccatalyst
-
-      - name: Build MacCatalyst
-        run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-maccatalyst --no-restore
-        continue-on-error: true
-
-      # Only runs when pushing to master
-      - name: Publish macOS Artifacts
-        if: github.ref == 'refs/heads/master'
-        run: echo "Publishing macOS build artifacts for master branch only!"
+        run: echo "Publish or upload Windows build artifacts here!"
