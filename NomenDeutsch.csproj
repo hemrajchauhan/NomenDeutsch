@@ -13,6 +13,13 @@
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
+		<RuntimeIdentifiers>
+		    android-arm64;android-x64;
+		    ios-arm64;iossimulator-x64;iossimulator-arm64;
+		    maccatalyst-x64;maccatalyst-arm64;
+		    win10-x64
+		</RuntimeIdentifiers>
+
 		<OutputType>Exe</OutputType>
 		<RootNamespace>NomenDeutsch</RootNamespace>
 		<UseMaui>true</UseMaui>
