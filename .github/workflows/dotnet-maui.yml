@@ -22,11 +22,15 @@ jobs:
       - name: Install .NET MAUI workloads
         run: dotnet workload install maui-android maui-windows
 
+      # Each build will automatically restore dependencies for its TFM
+
       - name: Build WinUI
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-windows10.0.19041.0
 
       - name: Build Android
         run: dotnet build NomenDeutsch.csproj -c Release -f net9.0-android
+
+      # Optional: Test or artifact upload steps go here
 
       # Optional: Run tests if you have them
       #- name: Test
